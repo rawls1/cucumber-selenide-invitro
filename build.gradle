@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.rawls'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def selenideVersion = "6.19.1",
+    cucumberVersion = "7.15.0",
+    restAssuredVersion = "5.4.0",
+    assertjVersion = "3.24.1"
+
+compileTestJava.options.encoding = "UTF-8"
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.1"
+    testImplementation "com.codeborne:selenide:${selenideVersion}"
+    testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
+    testImplementation "io.cucumber:cucumber-junit-platform-engine:${cucumberVersion}"
+    testImplementation "org.junit.platform:junit-platform-suite:1.10.2"
+    testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+    testImplementation "io.rest-assured:json-schema-validator:$restAssuredVersion"
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
+
+}
+//"io.rest-assured:rest-assured:$restAssuredVersion",
+//            "io.rest-assured:json-schema-validator:$restAssuredVersion"
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
