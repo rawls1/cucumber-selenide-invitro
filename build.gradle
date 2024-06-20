@@ -27,8 +27,6 @@ dependencies {
     testImplementation "org.assertj:assertj-core:$assertjVersion"
 
 }
-//"io.rest-assured:rest-assured:$restAssuredVersion",
-//            "io.rest-assured:json-schema-validator:$restAssuredVersion"
 
 tasks.withType(Test) {
     useJUnitPlatform()
